@@ -19,6 +19,9 @@ function App() {
       <h1 className="header">Hello, Rexy!</h1>
       <h2 className="subtitle">My first component</h2>
       <h2 className="introduce"> I'm Dylan</h2>
+      <button className="button" onClick={() => alert("Thank you!")}>
+        Click me!
+      </button>
       <DailyReport
         title="Report 23/06/2026"
         content="Today I learned about React components and how to create them. It was a great learning experience!"
