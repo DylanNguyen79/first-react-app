@@ -1,36 +1,86 @@
-// import { useState } from "react";
+import { useState } from "react";
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "./assets/vite.svg";
-// import heroImg from "./assets/hero.png";
-// import "./App.css";
+import "./App.css";
+import logoRexy from "./assets/rexy-logo.png";
+import { mainContent } from "../data";
 
-function DailyReport(props) {
+let today = new Date().toLocaleDateString();
+let time = new Date().toLocaleTimeString();
+
+// function DailyReport(props) {
+//   return (
+//     <div className="daily-report">
+//       <h2 className="daily-report-header">{props.title}</h2>
+//       <p className="report">{props.content}</p>
+//     </div>
+//   );
+// }
+
+function Header() {
   return (
-    <div className="daily-report">
-      <h2 className="daily-report-header">{props.title}</h2>
-      <p className="report">{props.content}</p>
-    </div>
+    <>
+      <h1>Hello, Rexy!</h1>
+      <p>
+        Today is: <strong>{today}</strong> and the current time is{" "}
+        <strong>{time}</strong>.
+      </p>
+    </>
+  );
+}
+
+function Content(props) {
+  return (
+    <li>
+      <img src={props.image} alt={props.alt} />
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+    </li>
+  );
+}
+
+function Introduce() {
+  return (
+    <>
+      <h2>I'm Dylan</h2>
+    </>
   );
 }
 
 function App() {
+  const [count, setCount] = useState(0);
   return (
-    <div className="wrapper">
-      <h1 className="header">Hello, Rexy!</h1>
-      <h2 className="subtitle">My first component</h2>
-      <h2 className="introduce"> I'm Dylan</h2>
-      <button className="button" onClick={() => alert("Thank you!")}>
-        Click me!
-      </button>
-      <DailyReport
-        title="Report 23/06/2026"
-        content="Today I learned about React components and how to create them. It was a great learning experience!"
-      />
-      <DailyReport
-        title="What will I learn tomorrow?"
-        content="State - useState - re-render"
-      />
-    </div>
+    <>
+      <div className="wrapper">
+        <Header />
+        <Introduce />
+        <button onClick={() => setCount((count) => count + 1)}>
+          {" "}
+          Count is {count}
+        </button>{" "}
+        <br />
+        <button onClick={() => alert("Welcome to my first React App!")}>
+          Click Me!
+        </button>
+        <ul>
+          <Content
+            image={mainContent[0].image}
+            alt={mainContent[0].alt}
+            title={mainContent[0].title}
+            description={mainContent[0].description}
+          />
+          <Content
+            image={mainContent[1].image}
+            alt={mainContent[1].alt}
+            title={mainContent[1].title}
+            description={mainContent[1].description}
+          />
+          <Content {...mainContent[0]} />
+          <Content {...mainContent[1]} />
+        </ul>
+        <img src={logoRexy} alt="Rexy Logo" />
+      </div>
+    </>
   );
 }
 
